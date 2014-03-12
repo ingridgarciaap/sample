@@ -1,0 +1,46 @@
+<workflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xmlns="http://levelsbeyond.com/schema/workflow"
+          xmlns:nimbus="http://levelsbeyond.com/schema/workflow/nimbus"
+          xsi:schemaLocation="
+    http://levelsbeyond.com/schema/workflow http://www.levelsbeyond.com/schema/workflow-2.0.xsd
+    http://levelsbeyond.com/schema/workflow/nimbus http://www.levelsbeyond.com/schema/production/nimbus-common-workflow-1.2.xsd
+    "
+    
+    id="mySecondWorkflow"
+    name="Email User"
+    executionLabelExpression="Second Workflow"
+    description="
+    Sample 
+    "
+    subjectDOClassName=""
+    showInUserInterface="true"
+    resultDataDef=""
+    >
+    <initialStepName>decide on sending email</initialStepName>
+    
+ 
+    <testStep name="decide on sending amil" outputExpression="" >
+        <transition condition="${true}">
+            <targetStepName>end</targetStepName>
+        </transition>
+    </testStep>
+    
+   <emailStep name="send email"
+       emailAddressesExpression="${emailaddress}"
+       subjectExpression="this is my subject" >
+       <transition condition= "${emailAddress !=null and emailAddress != ' '}"> 
+           <targetStepName>end</targetStepName>
+       </transition> 
+       <body>
+            This is the body of my email
+       </body>
+   </emailStep>
+   
+         
+    <noopStep name="end"/>
+    
+    <!-- imput variables -->
+    <contextDataDef name="wantEmail"  label="1. Check Box If You Wish An Email"  
+        dataType=""></contextDataDef>
+    
+</workflow>

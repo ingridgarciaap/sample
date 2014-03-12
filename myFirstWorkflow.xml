@@ -1,0 +1,53 @@
+<workflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xmlns="http://levelsbeyond.com/schema/workflow"
+          xmlns:nimbus="http://levelsbeyond.com/schema/workflow/nimbus"
+          xsi:schemaLocation="
+    http://levelsbeyond.com/schema/workflow http://www.levelsbeyond.com/schema/workflow-2.0.xsd
+    http://levelsbeyond.com/schema/workflow/nimbus http://www.levelsbeyond.com/schema/production/nimbus-common-workflow-1.2.xsd
+    "
+    
+    id="myFirstWorkflow"
+    name="Testing Sample"
+    executionLabelExpression="First Workflow"
+    description="
+    Sample 
+    "
+    subjectDOClassName=""
+    showInUserInterface="true"
+    resultDataDef=""
+    >
+    <initialStepName>my first step</initialStepName>
+    
+    <!-- NOOP (no operation) doesn't do anything functional but is a good place holder -->
+    <noopStep name="my first step" executionLabelExpression="This is a great good statment">
+        <transition condition="${true}">
+            <targetStepName>this is a test step</targetStepName>
+        </transition>
+    </noopStep>
+    
+    <!-- Used to break out transitions-->
+    <testStep name="this is a test step" outputExpression="This is another print statement" >
+        <transition condition="${true}">
+            <targetStepName>send me an email</targetStepName>
+        </transition>
+    </testStep>
+    
+   <emailStep name="send me an email"
+       emailAddressesExpression="ingrid.garcia@axispoint.com"
+       subjectExpression="this is my subject" >
+       <transition condition= "${true}"> 
+           <targetStepName>end</targetStepName>
+       </transition> 
+       <body>
+            This is the body of my email
+       </body>
+   </emailStep>
+       
+       
+  
+    <noopStep name="end"/>
+    
+    <!-- variables go here -->
+    
+    
+</workflow>
