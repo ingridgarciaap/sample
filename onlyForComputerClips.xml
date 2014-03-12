@@ -1,0 +1,24 @@
+<workflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://levelsbeyond.com/schema/workflow"
+    xmlns:nimbus="http://levelsbeyond.com/schema/workflow/nimbus"
+    xsi:schemaLocation="
+    http://levelsbeyond.com/schema/workflow http://www.levelsbeyond.com/schema/workflow-2.0.xsd
+    http://levelsbeyond.com/schema/workflow/nimbus http://www.levelsbeyond.com/schema/production/nimbus-common-workflow-1.2.xsd
+    "
+    
+    id="onlyForComputerClips"
+    name="Computer Clips"
+    executionLabelExpression="computer"
+    description="
+    Sample 
+    "
+    subjectDOClassName="Clip"
+    subjectQualifierExpression="${#picklistLabel('newJob',metadata.newJob) == 'computer'}"
+    showInUserInterface="true"
+    resultDataDef=""
+    
+    >
+    <initialStepName>end</initialStepName>
+    
+    <noopStep name="end"></noopStep>
+</workflow>
